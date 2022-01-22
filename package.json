@@ -1,0 +1,31 @@
+{
+  "name": "choreme-server",
+  "version": "1.0.0",
+  "description": "Chore application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darahdesigner/ChoreMe-Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darahdesigner/ChoreMe-Server/issues"
+  },
+  "homepage": "https://github.com/darahdesigner/ChoreMe-Server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "middleware": "^1.0.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.14.0"
+  }
+}
