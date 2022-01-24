@@ -4,7 +4,7 @@ let validateJWT = require("../middleware/validate-jwt");
 const { ProductModel } = require("../models");
 
 router.post("/", validateJWT, async (req, res) => {
-  const { title, description, price, shortDescription, image } =
+  const { title, description, price, amount, category, image } =
     req.body.product;
   const { id } = req.user;
   const productEntry = {
@@ -12,7 +12,8 @@ router.post("/", validateJWT, async (req, res) => {
     description,
     price,
     image,
-    shortDescription,
+    amount,
+    category,
     owner_id: id,
   };
   try {
@@ -23,7 +24,7 @@ router.post("/", validateJWT, async (req, res) => {
   }
 });
 
-router.get("/", validateJWT, async (req, res) => {
+router.get("/", async (req, res) => {
   const { id } = req.user;
   try {
     const query = {
@@ -39,7 +40,7 @@ router.get("/", validateJWT, async (req, res) => {
 });
 
 router.put("/:productId", validateJWT, async (req, res) => {
-  const { description, title, price, shortDescription, image, owner_id } =
+  const { description, title, price, shortDescription, image} =
     req.body.product;
   const productId = req.params.productId;
   const userId = req.user.id;

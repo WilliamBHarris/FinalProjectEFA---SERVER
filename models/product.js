@@ -14,8 +14,12 @@ const ProductModel = db.define("product", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  shortDescription: {
+  category: {
     type: DataTypes.STRING,
+    allowNull: false,
+  },
+  amount: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   price: {
