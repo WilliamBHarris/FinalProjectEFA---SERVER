@@ -8,12 +8,16 @@ const bcrypt = require("bcryptjs");
 
 
 router.post("/register", async (req, res) => {
-  let { username, passwordhash } = req.body.user;
+  let { email, passwordhash, firstName, lastName, location } = req.body.user;
 
   try {
     const User = await UserModel.create({
-      username,
+      email,
       passwordhash: bcrypt.hashSync(passwordhash, 13),
+      firstName,
+      lastName,
+      location,
+      
     });
 
     let token = jwt.sign({ id: User.id }, process.env.JWT_SECRET, {
@@ -40,10 +44,10 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
 
   try {
-    const { username, passwordhash } = req.body.user
+    const { email, passwordhash } = req.body.user
     const loginUser = await UserModel.findOne({
       where: {
-        username,
+        email,
     }});
 
     if (loginUser) {

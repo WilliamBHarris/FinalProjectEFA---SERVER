@@ -6,15 +6,16 @@ const { ProductModel } = require("../models");
 router.post("/", validateJWT, async (req, res) => {
   const { title, description, price, amount, category, image } =
     req.body.product;
-  const { id } = req.user;
+    
   const productEntry = {
     title,
     description,
-    price,
+    price, 
     image,
     amount,
     category,
-    owner_id: id,
+    userId: req.user.id,
+    productId: req.body.product.productId
   };
   try {
     const newProduct = await ProductModel.create(productEntry);

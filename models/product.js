@@ -2,9 +2,15 @@ const { DataTypes } = require("sequelize");
 const db = require("../db");
 
 const ProductModel = db.define("product", {
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+    allowNull: false,
+  },
   image: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   title: {
     type: DataTypes.STRING,
@@ -25,11 +31,7 @@ const ProductModel = db.define("product", {
   price: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  owner_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
+  }
 });
 
 module.exports = ProductModel;
