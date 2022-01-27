@@ -8,7 +8,7 @@ const bcrypt = require("bcryptjs");
 
 
 router.post("/register", async (req, res) => {
-  let { email, passwordhash, firstName, lastName, location } = req.body.user;
+  let {  passwordhash, email, firstName, lastName, location, image } = req.body.user;
 
   try {
     const User = await UserModel.create({
@@ -17,6 +17,7 @@ router.post("/register", async (req, res) => {
       firstName,
       lastName,
       location,
+      image
       
     });
 

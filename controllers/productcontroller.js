@@ -40,16 +40,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.put("/:productId", validateJWT, async (req, res) => {
-  const { description, title, price, shortDescription, image} =
+router.put("/:id", validateJWT, async (req, res) => {
+  const { description, title, price, amount, image} =
     req.body.product;
-  const productId = req.params.productId;
+  const productId = req.params.id;
   const userId = req.user.id;
 
   const query = {
     where: {
       id: productId,
-      owner_id: userId,
+      userId: userId,
     },
   };
 
@@ -57,7 +57,7 @@ router.put("/:productId", validateJWT, async (req, res) => {
     title: title,
     description: description,
     price: price,
-    shortDescription: shortDescription,
+    amount: amount,
     image: image,
   };
 
@@ -69,15 +69,15 @@ router.put("/:productId", validateJWT, async (req, res) => {
   }
 });
 
-router.delete("/:productId", validateJWT, async (req, res) => {
+router.delete("/:id", validateJWT, async (req, res) => {
   const userId = req.user.id;
-  const productId = req.params.productId;
+  const productId = req.params.id;
 
   try {
     const query = {
       where: {
         id: productId,
-        owner_id: userId,
+        userId: userId,
       },
     };
     await ProductModel.destroy(query);
