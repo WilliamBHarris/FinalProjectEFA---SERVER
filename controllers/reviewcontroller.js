@@ -54,34 +54,36 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.put("/:productId", validateJWT, async (req, res) => {
-//   const { description, title, price, shortDescription, image} =
-//     req.body.product;
-//   const productId = req.params.productId;
-//   const userId = req.user.id;
+router.put("/:reviewId", validateJWT, async (req, res) => {
+  const { description, title} =
+    req.body.review;
+  const reviewId = req.params.reviewId;
+  const userId = req.user.id;
 
-//   const query = {
-//     where: {
-//       id: productId,
-//       owner_id: userId,
-//     },
-//   };
+  const query = {
+    where: {
+      id: reviewId,
+    },
+    include: [
+      {
+        model: UserModel,
+      },
+      { model: ProductModel },
+    ],
+  };
 
-//   const updatedProduct = {
-//     title: title,
-//     description: description,
-//     price: price,
-//     shortDescription: shortDescription,
-//     image: image,
-//   };
+  const updatedReview = {
+    title: title,
+    description: description,
+  };
 
-//   try {
-//     const update = await ProductModel.update(updatedProduct, query);
-//     res.status(200).json(update);
-//   } catch (err) {
-//     res.status(500).json({ error: err });
-//   }
-// });
+  try {
+    const update = await ReviewModel.update(updatedReview, query);
+    res.status(200).json(update);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
 
 router.delete("/:id", validateJWT, async (req, res) => {
   const userId = req.user.id;
