@@ -82,10 +82,10 @@ router.post("/login", async (req, res) => {
 });
 
 
-// router.post('/checkToken', validateJWT, async (req, res) => {
-//   res.status(200).json({
-//     userId: req.user.id,
-//   });
-// })
+router.post('/checkToken', validateJWT, async (req, res) => {
+  res.status(200).json({
+    userId: req.user.id,
+  });
+})
 
 module.exports = router;
