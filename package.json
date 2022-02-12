@@ -1,5 +1,5 @@
 {
-  "name": "choreme-server",
+  "name": "e-commerce-server",
   "version": "1.0.0",
   "description": "Chore application",
   "main": "app.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darahdesigner/ChoreMe-Server.git"
+    "url": "git+https://github.com/WilliamBHarris/FinalProjectEFA---SERVER.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/darahdesigner/ChoreMe-Server/issues"
+    "url": "https://github.com/WilliamBHarris/FinalProjectEFA---SERVER/issues"
   },
-  "homepage": "https://github.com/darahdesigner/ChoreMe-Server#readme",
+  "homepage": "https://github.com/WilliamBHarris/FinalProjectEFA---SERVER#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
