@@ -6,8 +6,8 @@ const ReviewModel = require('./reviews')
 UserModel.hasMany(ReviewModel);
 UserModel.hasMany(ProductModel);
 ProductModel.hasMany(ReviewModel)
-ReviewModel.belongsTo(ProductModel)
 
+ReviewModel.belongsTo(ProductModel)
 ReviewModel.belongsTo(UserModel);
 ProductModel.belongsTo(UserModel);
 

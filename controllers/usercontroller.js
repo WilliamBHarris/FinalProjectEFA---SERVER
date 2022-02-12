@@ -91,4 +91,13 @@ router.post('/checkToken', validateJWT, async (req, res) => {
   });
 })
 
+router.post('/checkToken', validateJWT, async (req, res) => {
+  res.status(200).json({
+    userId: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+  });
+})
+
 module.exports = router;
