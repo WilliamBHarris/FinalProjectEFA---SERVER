@@ -8,6 +8,10 @@ const User = db.define("user", {
     primaryKey: true,
     allowNull: false,
   },
+  role: {
+    type: DataTypes.ENUM('admin', 'general'),
+    allowNull: false
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,

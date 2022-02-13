@@ -9,7 +9,7 @@ const validateJWT = require('../middleware/validate-jwt');
 
 
 router.post("/register", async (req, res) => {
-  let {  passwordhash, email, firstName, lastName, location, image } = req.body.user;
+  let {  passwordhash, email, firstName, lastName, location, image, role } = req.body.user;
 
   try {
     const User = await UserModel.create({
@@ -18,7 +18,8 @@ router.post("/register", async (req, res) => {
       firstName,
       lastName,
       location,
-      image
+      image,
+      role
       
     });
 
@@ -82,12 +83,13 @@ router.post("/login", async (req, res) => {
 });
 
 
-router.post('/checkToken', validateJWT, async (req, res) => {
+router.post('/setUser', validateJWT, async (req, res) => {
   res.status(200).json({
     userId: req.user.id,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
-    email: req.user.email
+    email: req.user.email,
+    role: req.user.role
   });
 })
 
