@@ -94,14 +94,14 @@ router.put("/:id", validateJWT, async (req, res) => {
 });
 
 router.delete("/:id", validateJWT, async (req, res) => {
-  const userId = req.user.id;
+  // const userId = req.user.id;
   const productId = req.params.id;
 
   try {
     const query = {
       where: {
         id: productId,
-        userId: userId,
+        
       },
     };
     await ProductModel.destroy(query);
