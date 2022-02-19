@@ -22,11 +22,11 @@ const ProductModel = db.define("product", {
   },
   category: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   amount: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   price: {
     type: DataTypes.INTEGER,

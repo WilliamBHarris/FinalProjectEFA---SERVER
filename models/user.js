@@ -35,7 +35,7 @@ const User = db.define("user", {
   },
   location: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 
