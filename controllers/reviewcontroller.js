@@ -4,10 +4,11 @@ let validateJWT = require("../middleware/validate-jwt");
 const { ReviewModel, UserModel, ProductModel } = require("../models");
 
 router.post("/:productid", validateJWT, async (req, res) => {
-  const { title, description } = req.body.review;
+  const { title, description, userName } = req.body.review;
   const productId = req.params.productid;
 
   const reviewEntry = {
+    userName,
     title,
     description,
     userId: req.user.id,
@@ -32,8 +33,7 @@ router.get("/:id", async (req, res) => {
       include: [
         {
           model: UserModel,
-        },
-        { model: ProductModel },
+        }
       ],
     });
 

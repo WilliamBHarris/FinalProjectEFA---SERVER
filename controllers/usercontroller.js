@@ -115,4 +115,23 @@ router.post('/setUser', validateJWT, async (req, res) => {
   });
 })
 
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const user = await UserModel.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    res.status(200).json(user);
+  } 
+  catch (error) {
+    res.status(500).json({
+      message: `Failed to get user: ${error}`
+    });
+  }
+})
+
 module.exports = router;
