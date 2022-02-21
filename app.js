@@ -1,9 +1,13 @@
 require("dotenv").config();
+const fetch = require('node-fetch')
+
 const express = require("express");
-const app = express();
-const dbConnection = require('./db')
 const cors = require('cors');
-app.use(cors());
+const app = express();
+
+let whitelist = ['http://localhost:3001', 'https://wbh-final-client.herokuapp.com/', 'http://localhost:3000']
+app.use(cors({ origin: whitelist, credentials: true }));
+const dbConnection = require('./db')
 const controllers = require("./controllers");
 
 app.use(express.json())
