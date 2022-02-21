@@ -1,7 +1,7 @@
 const Express = require("express");
 const router = Express.Router();
 let validateJWT = require("../middleware/validate-jwt");
-const { ReviewModel, UserModel, ProductModel } = require("../models");
+const { ReviewModel, UserModel, ProductModel } = require("../models/index.js");
 
 router.post("/:productid", validateJWT, async (req, res) => {
   const { title, description, userName } = req.body.review;
