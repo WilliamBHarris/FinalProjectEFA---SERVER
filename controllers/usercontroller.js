@@ -111,7 +111,11 @@ router.post('/setUser', validateJWT, async (req, res) => {
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     email: req.user.email,
-    role: req.user.role
+    location: req.user.location,
+    image: req.user.image,
+    role: req.user.role,
+    passwordhash: req.user.passwordhash,
+    id: req.user.id
   });
 })
 
@@ -129,6 +133,73 @@ router.get('/:id', async (req, res) => {
   } 
   catch (error) {
     res.status(500).json({
+      message: `Failed to get user: ${error}`
+    });
+  }
+})
+
+router.put('/edit/:id', validateJWT, async (req, res) => {
+  const { role, firstName, lastName, email, location, image } = req.body.user;
+  const id = req.params.id;
+  const userID = req.id;
+
+  const updatedProfile = {
+    role,
+    firstName,
+    lastName,
+    email,
+    location,
+    image
+  }
+
+  const query = {
+    where: {
+      id: id
+    }
+  }
+
+  try {
+    if (userID === id || req.user.role === 'admin') {
+      await UserModel.update(updatedProfile, query);
+  
+      res.status(200).json({
+        message: 'profile updated',
+        updatedProfile: updatedProfile 
+      });
+    } else {
+      res.status(403).json({
+        message: 'Forbidden'
+      })
+    }
+  } 
+  catch (error) {
+    res.status(403).json({
+      message: `Failed to update: ${error}`
+    });
+  }
+})
+
+router.get('/userInfo/:id', validateJWT, async (req, res) => {
+  const id = req.params.id;
+  const userID = req.user.id;
+
+  try {
+    if (userID === id || req.user.role === 'admin') {
+      const user = await UserModel.findOne({
+        where: {
+          id: id
+        }
+      })
+      
+      res.status(200).json(user)
+    } else {
+      res.status(403).json({
+        message: 'Forbidden'
+      })
+    }
+  } 
+  catch (error) {
+    res.status(403).json({
       message: `Failed to get user: ${error}`
     });
   }
